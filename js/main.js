@@ -1,146 +1,90 @@
-var data = [{
-      "city":"Monday",
-      "male": 79,
-      "female": 21
-    
+var Readable = require('stream').Readable  
+var util = require('util')  
+var five = require('johnny-five')
 
-    }, {
-      "city": "Tuesday",
-      "male": 82,
-      "female": 18
-    
-    }, {
-      "city": "Wednesday",
-      "male": 78,
-      "female": 22
-     
-    }, {
-      "city": "Thursday",
-      "male": 90,
-      "female": 10
-     
-    }, {
-      "city": "Friday",
-      "male": 79,
-      "female": 21
-     
-    }, {
-      "city": "Saturday",
-      "male": 86,
-      "female": 14
-     
-    }, {
-      "city": "Sunday",
-      "male": 97,
-      "female": 3
-     
-    }];
+util.inherits(MyStream, Readable)  
+function MyStream(opt) {  
+  Readable.call(this, opt)
+}
+MyStream.prototype._read = function() {};  
+// hook in our stream
+process.__defineGetter__('stdin', function() {  
+  if (process.__stdin) return process.__stdin
+  process.__stdin = new MyStream()
+  return process.__stdin
+})
 
 
- // Variables
+var board = new five.Board();
+var valueDiv = document.querySelector("#plantValue");
+
+d3.select("#chart")
+    .append("svg")
+    .attr('width', 200)
+    .attr('height', 200);
+
+var circles = svg.Container. selectAll("circle")
+                          .data("finalValue")
+                          .enter()
+                          .append("circle")
+
+  var circleAttributes = circles
+                       .attr("cx", 50)
+                       .attr("cy", 50)
+                       .attr("r", function (d) { return d; })
+                      .style("fill", "green");                        
 
 
 
-var margin = { top: 40, 
-               right: 30,
-               bottom: 30, 
-               left: 40
-        };
-              var  width =500;
-               var  height = 500;
 
-var barWidth= 40;
-var color = d3.scaleOrdinal()
-    .range(["#E8D1FF","#11B5F0"]);
-var labels= ["Female","Male"]
+//  //var svgContainer = d3.select("chart").append("svg")
+//                                      .attr("width", 600)
+//                                     .attr("height", 100);
+ 
+//  var circles = svgContainer.selectAll("circle")
+//                            .data(finalValue)
+//                            .enter()
+//                           .append("circle")
 
-var x = d3.scaleBand()
-         .domain(data.map(function(d) {
-         return d.city
-          }))
-        .range([0, width ]);
+// var circleAttributes = circles
+//                        .attr("cx", 50)
+//                        .attr("cy", 50)
+//                        .attr("r", function (d) { return d; })
+//                       .style("fill", "green");
 
- var y1 = d3.scaleLinear()
-          .domain([0, d3.max(data, function(d) {
-          return d.male
-          })])
-         .range([height, 0]);
-
-  var y2 = d3.scaleLinear()
-          .domain([0, d3.max(data, function(d) {
-          return d.female
-          })])
-         .range([height, 0]);
-       
-
-  var bar = d3.select("#chart")
-           .data(data)
-          .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  var xAxis = d3.axisBottom(x)
-              bar.append("g")
-             .attr("class", "x axis")
-             .attr("transform", "translate(0," + height + ")")
-             .call(xAxis);
-
-  bar.append("g")
-             .attr("class", "axis")
-            .call(d3.axisLeft(y1));
-
-   var graficos = bar.selectAll('rect')
-                   .data(data);
-
-      bar.selectAll("text")
-                  .data(function(d)
-                   {
-                    return d.female;
-                  })
-                  .enter()
-                  .append("text");
+board.on("ready", function() {
   
+  var sensor = new five.Sensor({
+  pin: "A0", 
+  freq: 250, //emits data events every 250ms
+  threshold: 2 //emits change events when the ADC value has changed by +2/-2
 
-//MAle
-    var Malebar = graficos.enter();
+  
+});
+ 
 
-    Malebar.append('rect')
-      .attr('x', function(d, i) {
-        return x(d.city);
-      })
-      .attr('y', function(d, i) {
-        return y1(d.male);
-      })
-      .attr('height', function(d, i) {
-        return height - y1(d.male)
-      })
-      .attr('width', barWidth)
-      .attr("transform", "translate(" + 30 + ",0)")
-      .style('fill', "#11B5F0")
-      .attr('class', 'bar')
-     
-     
-      
+  
+  sensor.on("change", function() { //could use "data" as well
+    //var sensorInfo = this.value;
+    //alueDiv.innerHTML = sensorInfo;
+    //supposed to range from 0-1023, will have to calibrate
+    var percentage = map_range(this.value, 1023, 400, 0, 100);
+    var finalValue = Math.floor(percentage);
+    valueDiv.innerHTML = finalValue;
+  
+  });
 
- Malebar.append("text")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .text(function(d)
-         {
-          return d.male;
-         })
+  //I notice the sensor didn't fall all the way to 0, but instead stopped at 400
+  //Going to need to research and implement a Remap or Map function in Javascript
 
-         .style('fill',"#ffff")
-         .attr('x', function(d, i) {
-        return x(d.city);
-      })
-      .attr('y', function(d, i) {
-        return y1(d.male);
-      })
-      .attr('height', function(d, i) {
-        return height - y1(d.male)
-      })
-      .attr('width', barWidth)
-      .attr("transform", "translate(" + 45 + ",0)");
-     
+function map_range(value, low1, high1, low2, high2){
+  return low2 + (high2-low2) * (value - low1)/(high1-low1);
+}
+
+
+
+});
+
+
+
+ 
