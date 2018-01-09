@@ -1,0 +1,78 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400');
+
+
+@font-face {
+  font-family: 'aliceregular';
+  src: url("alice-regular-webfont.woff2") format("woff2"), url("alice-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+
+.intro
+{
+	height: 100%;
+	width: 134%;
+	margin: auto;
+	background: url('../img/fondo.jpg');
+	display: table;
+	top:0;
+	background-size: cover;
+}
+
+.intro .inner
+{
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+	max-width: none;
+}
+
+.content
+{
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 28%;
+}
+
+
+.content
+{
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 28%;
+	color: white;
+	margin-top: 182px;
+}
+
+
+.btn
+{
+	font-family: 'Montserrat';
+	font-size: 135%;
+	font-weight: 400;
+	color: #ffffff;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: solid #ffffff;
+	padding: 10px 20px;
+	border-radius: 9px;
+}
+
+.btn: hover 
+{
+	color: #CBDFD6;
+	border: solid #CBDFD6 2px ;
+}
+/*--- Media Queries --*/
+@media screen and (max-width: 900px) {
+
+}
+@media screen and (max-width: 768px) {
+
+}
+@media screen and (max-width: 480px) {
+	
+}

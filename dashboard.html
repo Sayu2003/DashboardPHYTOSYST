@@ -1,25 +1,21 @@
-<<<<<<< HEAD:app/index.html
-<!doctype html>
+<!DOCTYPE <html>
 <html>
-<head>
-<meta charset="UTF-8">
 
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0,  shrink-to-fit=no' name='viewport' />
 <title>PHYTOSYST</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main_style.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href='fonts/font-awesome.min.css' type='text/css'>
-<script src="js/d3.main.js"></script>
-</head>
-
-<body>
+   
+    
 
 
 
-	<!-- navbar -->
-	<div class="wrapper">
+    <body>
+
+    	<div class="wrapper">
     		<div class="sidebar" data-color="one">
     			 <div class="sidebar-wrapper">
     			 	<div class="">
@@ -29,7 +25,7 @@
     			 	<ul class="nav">
     			 		 <li class="nav-item active">
     			 		 	<a class="nav-link logo" href="index.html">
-    			 		 		<img src="images/logosvg.svg" alt="">
+    			 		 		<img src="img/logosvg.svg" alt="">
                             </a>
     			 		 </li>
 
@@ -71,11 +67,7 @@
     		</div>
     	
 
-
-	<!--end navbar  -->
-
-
-	<!-- .......................Navbar...............................-->
+    	<!-- .......................Navbar...............................-->
     	<div class="main-panel">
     		<nav class="navbar navbar-expand-lg ">
     			<div class=" container-fluid  ">
@@ -89,7 +81,6 @@
     	
 
     	<!-- .......................CenterPage...............................-->
-
 
     	<div class="content">
     		<div class="container-fluid">
@@ -107,7 +98,7 @@
                                     <h3> Welcome back, </h3> 
                                 </div>
                                 <div id="cmoisture" class="col-xs-12 col-md-7"> 
-                                    <h3> Moisture Level: <span id="plantValue"></span></h3>  
+                                    <h3> Moisture Level <span id="plantValue"></span></h3>  
                                 </div>
                                 
 
@@ -121,7 +112,7 @@
                                 </div>
     			 		</div>
     			 	</div>
-					<!-- .................Moisture........................-->
+					<!-- .................Temperature........................-->
 					<div class="col-md-6">
     			 		<div class="card two">
     			 			<div class="card-header ">
@@ -133,8 +124,7 @@
                                     <h3> The current Level is <span id="plantValue"></span></h3> 
                                 </div>
                                 
-    			 				<div id="chart">
-                                </div>
+    			 				<div id="chartone"></div>
     			 			</div>
     			 			<div class="card-footer ">
                                  
@@ -154,6 +144,7 @@
     			 			<div class="card-header ">
     			 				<h4 class="card-title">Moisture</h4>
     			 			</div>
+
     			 			<div class="card-body row">
                                 <div id="current" class="col-xs-12 col-md-7"> 
                                     <h3> The current Level is</h3> 
@@ -161,6 +152,7 @@
                                 <div class="number col-xs-32 col-md-5">23</div>
     			 				<div id="chart" >
                 
+
                                 </div>
     			 			</div>
     			 			<div class="card-footer ">
@@ -177,6 +169,7 @@
     			 			<div class="card-header ">
     			 				<h4 class="card-title">Light</h4>
     			 			</div>
+
     			 			<div class="card-body row">
                                 <div id="current" class="col-xs-12 col-md-7"> 
                                     <h3> The current Level is</h3> 
@@ -194,7 +187,7 @@
     			 	</div>
    			 </div> -->
 			<!-- ..............ENDFirstRow........................-->
-			</div>
+   		</div>
     	</div>
 
     	            <footer class="footer">
@@ -213,45 +206,13 @@
 
     </body>	
 
-
-	<script src="js/main.js"></script>
-    <script src="js/chart.js"></script>
-	<script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     
+    <script src="js/maintwo.js" type="text/javascript"></script>
+    <script src="js/mainthree.js" type="text/javascript"></script>
+    <script src="js/main.js"></script>
     
-</body>
-</html>
 
-=======
-<!DOCTYPE html>
-<head>
-	<title>PHYTOSYST intro</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/style_landing.css">
-	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
-	<link href="css/animate.css" rel="stylesheet">
-	<link href="css/waypoints.css" rel="stylesheet">
-	<script src="js/jquery.waypoints.min.js" type="text/jvascript"></script>
-	<script src="js/waypoints.js" type="text/javascript"></script>
-</head>
-<body>
-	<section class="intro">
-		<div class="inner">
-			<div class="content">
-				<section class="os-animation" data-os-animation="bounceInUp" data-os-animation-delay="0s">
-				<h1> PHYTOSYST</h1>
-				 </section>
-
-				 <section class="os-animation" data-os-animation="bounceInUp" data-os-animation-delay="0s">
-				<a class="btn" href="dashboard.html"> Get started</a>
-				 </section>
-			</div>
-		</div>
-	</section>
-	</body>
 </html>
->>>>>>> upstream/master:index.html
