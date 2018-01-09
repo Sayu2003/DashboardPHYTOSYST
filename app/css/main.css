@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body
+{
+font-family: 'Open Sans', sans-serif;
+font-size: 14px;
+background: url("images/about-1.jpg") no-repeat; background-size: 736px 374px ;
+}
+
+#container
+{
+	margin: 0 auto;
+	width: 400px;
+
+}
+
+h1
+{
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
+	font-size: 32px;
+	text-align: center;
+}
+
+
+#container circle
+{
+	fill: #06994D;
+}
+
